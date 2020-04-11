@@ -1,1 +1,4 @@
 tags*
+bundle.js
+node_modules/
+test.js
