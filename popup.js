@@ -8,6 +8,7 @@ var nlp = require("compromise");
 
 let retrieveTopics = document.getElementById("retrieveTopics");
 let clearTopics = document.getElementById("clearTopics");
+let recommendBooks = document.getElementById("recommendBooks");
 
 //chrome.storage.sync.get("color", function(data) {
 //changeColor.style.backgroundColor = data.color;

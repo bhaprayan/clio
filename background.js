@@ -8,18 +8,6 @@ chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({ topics: [] }, function() {
     console.log("Set topics to empty list");
   });
-  chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([
-      {
-        conditions: [
-          new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostEquals: "developer.chrome.com" }
-          })
-        ],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-      }
-    ]);
-  });
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
