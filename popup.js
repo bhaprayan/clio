@@ -19,6 +19,7 @@ let recommendBooks = document.getElementById("recommendBooks");
 //topics_array = data.topics.split(",");
 //}
 
+/* button logic functions */
 retrieveTopics.onclick = function(element) {
   buildTypedUrlList("typedUrl_div");
 };
@@ -31,19 +32,22 @@ recommendBooks.onclick = function(element) {
   pullTopicBooks();
 };
 
-async function pullTopicBooks() {
-  // stub function for now. integrate to recommend books
-  chrome.storage.get("topics", function() {
-    return;
-  });
-}
-
+/* link logic functions */
 function onAnchorClick(event) {
   chrome.tabs.create({
     selected: true,
     url: event.srcElement.href
   });
   return false;
+}
+
+// pull book reccs given a topic list
+async function pullTopicBooks() {
+  // stub function for now. integrate to recommend books
+  chrome.tabs.create({
+    selected: true,
+    url: "reccs.html"
+  });
 }
 
 async function clearTypedUrlList(divName) {
@@ -56,21 +60,20 @@ async function clearTypedUrlList(divName) {
   });
 }
 
-// Given an array of URLs, build a DOM list of those URLs in the
-// browser action popup.
-
 async function pullTopics(divName, data) {
   for (var i = 0, ie = data.length; i < ie; ++i) {
     httpGetAsync(data[i], logRequest);
   }
 }
+// Given an array of URLs, build a DOM list of those URLs in the
+// browser action popup.
 
 function buildPopupDom(divName, data) {
   var popupDiv = document.getElementById(divName);
   var ul = document.createElement("ul");
   popupDiv.appendChild(ul);
   chrome.storage.sync.get("topics", function(data) {
-    if (data && data.length) {
+    if (data.topics && data.topics.length) {
       topics_array = data.topics.split(",");
       console.log(topics_array);
       for (var i = 0, ie = topics_array.length; i < ie; ++i) {
