@@ -20,17 +20,17 @@
     "default_title": "clio | a virtual librarian",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/LogoMakr_1Zn8hQ.png",
-      "32": "images/LogoMakr_1Zn8hQ.png",
-      "48": "images/LogoMakr_1Zn8hQ.png",
-      "128": "images/LogoMakr_1Zn8hQ.png"
+      "16": "images/autodraw 4_12_2020.png",
+      "32": "images/autodraw 4_12_2020.png",
+      "48": "images/autodraw 4_12_2020.png",
+      "128": "images/autodraw 4_12_2020.png"
     }
   },
   "icons": {
-    "16": "images/LogoMakr_1Zn8hQ.png",
-    "32": "images/LogoMakr_1Zn8hQ.png",
-    "48": "images/LogoMakr_1Zn8hQ.png",
-    "128": "images/LogoMakr_1Zn8hQ.png"
+    "16": "images/autodraw 4_12_2020.png",
+    "32": "images/autodraw 4_12_2020.png",
+    "48": "images/autodraw 4_12_2020.png",
+    "128": "images/autodraw 4_12_2020.png"
   },
   "manifest_version": 2
 }
