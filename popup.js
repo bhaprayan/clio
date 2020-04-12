@@ -27,6 +27,17 @@ clearTopics.onclick = function(element) {
   clearTypedUrlList("typedUrl_div");
 };
 
+recommendBooks.onclick = function(element) {
+  pullTopicBooks();
+};
+
+async function pullTopicBooks() {
+  // stub function for now. integrate to recommend books
+  chrome.storage.get("topics", function() {
+    return;
+  });
+}
+
 function onAnchorClick(event) {
   chrome.tabs.create({
     selected: true,
