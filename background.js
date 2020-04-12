@@ -8,6 +8,12 @@ chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.sync.set({ topics: [] }, function() {
     console.log("Set topics to empty list");
   });
+  chrome.storage.sync.set(
+    { apikey: "AIzaSyD64JeeHOr9JOd7f_Z8605kbMUXTwRviTY" },
+    function() {
+      console.log("Set the API key");
+    }
+  );
 });
 
 chrome.tabs.onActivated.addListener(function(activeInfo) {
