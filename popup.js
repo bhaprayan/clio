@@ -7,6 +7,7 @@
 var nlp = require("compromise");
 
 let retrieveTopics = document.getElementById("retrieveTopics");
+let clearTopics = document.getElementById("clearTopics");
 
 //chrome.storage.sync.get("color", function(data) {
 //changeColor.style.backgroundColor = data.color;
@@ -21,12 +22,26 @@ retrieveTopics.onclick = function(element) {
   buildTypedUrlList("typedUrl_div");
 };
 
+clearTopics.onclick = function(element) {
+  clearTypedUrlList("typedUrl_div");
+};
+
 function onAnchorClick(event) {
   chrome.tabs.create({
     selected: true,
     url: event.srcElement.href
   });
   return false;
+}
+
+async function clearTypedUrlList(divName) {
+  var popupDiv = document.getElementById(divName);
+  // clear display list
+  popupDiv.innerHTML = "";
+  // clear stored topic list
+  chrome.storage.sync.set({ topics: [] }, function() {
+    return;
+  });
 }
 
 // Given an array of URLs, build a DOM list of those URLs in the
