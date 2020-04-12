@@ -21,6 +21,7 @@ changeColor.onclick = function(element) {
       code: 'document.body.style.backgroundColor = "' + color + '";'
     });
   });
+  buildTypedUrlList("typedUrl_div");
 };
 
 function onAnchorClick(event) {
@@ -61,9 +62,22 @@ function httpGetAsync(theUrl, callback) {
   xmlHttp.send(null);
 }
 
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
 function logRequest(response, responseType) {
   doc = nlp(response.body.innerText);
-  console.log(doc.topics().json());
+  console.log(
+    doc
+      .topics()
+      .out("clean")
+      .replace(/[^\w\s]/gi, "")
+      .replace(/(\r\n|\n|\r)/gm, "")
+      .split(/[ ]+/)
+      .filter(Boolean)
+      .filter(onlyUnique)
+  );
   //console.log(response.body.innerText);
   //console.log("responseType:", responseType);
 }
@@ -139,6 +153,6 @@ function buildTypedUrlList(divName) {
   };
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  buildTypedUrlList("typedUrl_div");
-});
+//document.addEventListener("DOMContentLoaded", function() {
+//buildTypedUrlList("typedUrl_div");
+//});
