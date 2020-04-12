@@ -70,15 +70,17 @@ function buildPopupDom(divName, data) {
   var ul = document.createElement("ul");
   popupDiv.appendChild(ul);
   chrome.storage.sync.get("topics", function(data) {
-    topics_array = data.topics.split(",");
-    console.log(topics_array);
-    for (var i = 0, ie = topics_array.length; i < ie; ++i) {
-      var a = document.createElement("a");
-      a.appendChild(document.createTextNode(topics_array[i]));
-      //a.addEventListener("click", onAnchorClick);
-      var li = document.createElement("li");
-      li.appendChild(a);
-      ul.appendChild(li);
+    if (data && data.length) {
+      topics_array = data.topics.split(",");
+      console.log(topics_array);
+      for (var i = 0, ie = topics_array.length; i < ie; ++i) {
+        var a = document.createElement("a");
+        a.appendChild(document.createTextNode(topics_array[i]));
+        //a.addEventListener("click", onAnchorClick);
+        var li = document.createElement("li");
+        li.appendChild(a);
+        ul.appendChild(li);
+      }
     }
   });
 }
