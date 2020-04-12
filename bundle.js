@@ -13684,7 +13684,7 @@ function onAnchorClick(event) {
 // Given an array of URLs, build a DOM list of those URLs in the
 // browser action popup.
 
-function pullTopics(divName, data) {
+async function pullTopics(divName, data) {
   for (var i = 0, ie = data.length; i < ie; ++i) {
     httpGetAsync(data[i], logRequest);
   }
@@ -13694,18 +13694,21 @@ function buildPopupDom(divName, data) {
   var popupDiv = document.getElementById(divName);
   var ul = document.createElement("ul");
   popupDiv.appendChild(ul);
-  for (var i = 0, ie = data.length; i < ie; ++i) {
-    var a = document.createElement("a");
-    a.href = data[i];
-    a.appendChild(document.createTextNode(data[i]));
-    a.addEventListener("click", onAnchorClick);
-    var li = document.createElement("li");
-    li.appendChild(a);
-    ul.appendChild(li);
-  }
+  chrome.storage.sync.get("topics", function(data) {
+    topics_array = data.topics.split(",");
+    console.log(topics_array);
+    for (var i = 0, ie = topics_array.length; i < ie; ++i) {
+      var a = document.createElement("a");
+      a.appendChild(document.createTextNode(topics_array[i]));
+      //a.addEventListener("click", onAnchorClick);
+      var li = document.createElement("li");
+      li.appendChild(a);
+      ul.appendChild(li);
+    }
+  });
 }
 
-function httpGetAsync(theUrl, callback) {
+async function httpGetAsync(theUrl, callback) {
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function() {
@@ -13808,7 +13811,8 @@ function buildTypedUrlList(divName) {
     urlArray.sort(function(a, b) {
       return urlToCount[b] - urlToCount[a];
     });
-    pullTopics(divName, urlArray.slice(0, 10));
+    let data = urlArray.slice(0, 10);
+    pullTopics(divName, data).then(buildPopupDom("typedUrl_div", data));
   };
 }
 
