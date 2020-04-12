@@ -13,6 +13,10 @@ let retrieveTopics = document.getElementById("retrieveTopics");
 //changeColor.setAttribute("value", data.color);
 //});
 
+//chrome.storage.sync.get("topics", function(data) {
+//topics_array = data.topics.split(",");
+//}
+
 retrieveTopics.onclick = function(element) {
   buildTypedUrlList("typedUrl_div");
 };
