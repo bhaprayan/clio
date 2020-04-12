@@ -6,21 +6,14 @@
 
 var nlp = require("compromise");
 
-let changeColor = document.getElementById("changeColor");
+let retrieveTopics = document.getElementById("retrieveTopics");
 
-chrome.storage.sync.get("color", function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute("value", data.color);
-});
+//chrome.storage.sync.get("color", function(data) {
+//changeColor.style.backgroundColor = data.color;
+//changeColor.setAttribute("value", data.color);
+//});
 
-changeColor.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    console.log(tabs[0].url);
-    chrome.tabs.executeScript(tabs[0].id, {
-      code: 'document.body.style.backgroundColor = "' + color + '";'
-    });
-  });
+retrieveTopics.onclick = function(element) {
   buildTypedUrlList("typedUrl_div");
 };
 
@@ -68,18 +61,21 @@ function onlyUnique(value, index, self) {
 
 function logRequest(response, responseType) {
   doc = nlp(response.body.innerText);
-  console.log(
-    doc
-      .topics()
-      .out("clean")
-      .replace(/[^\w\s]/gi, "")
-      .replace(/(\r\n|\n|\r)/gm, "")
-      .split(/[ ]+/)
-      .filter(Boolean)
-      .filter(onlyUnique)
-  );
-  //console.log(response.body.innerText);
-  //console.log("responseType:", responseType);
+  doc_topic = doc
+    .topics()
+    .out("clean")
+    .replace(/[^\w\s]/gi, "") // remove special chars
+    .replace(/(\r\n|\n|\r)/gm, "") // remove newlines
+    .split(/[ ]+/) // remove whitespaces
+    .filter(Boolean) // filter nulls
+    .filter(onlyUnique); // extract unique
+  chrome.storage.sync.get("topics", function(data) {
+    console.log("old topics are" + data.topics);
+    new_topics = data.topics + doc_topic;
+    chrome.storage.sync.set({ topics: new_topics }, function() {
+      console.log("new topics are:" + new_topics);
+    });
+  });
 }
 // Search history to find up to ten links that a user has typed in,
 // and show those links in a popup.
