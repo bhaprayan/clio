@@ -20,17 +20,17 @@
     "default_title": "clio | a virtual librarian",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/autodraw 4_12_2020.png",
-      "32": "images/autodraw 4_12_2020.png",
-      "48": "images/autodraw 4_12_2020.png",
-      "128": "images/autodraw 4_12_2020.png"
+      "16": "images/output-onlinepngtools.png",
+      "32": "images/output-onlinepngtools.png",
+      "48": "images/output-onlinepngtools.png",
+      "128": "images/output-onlinepngtools.png"
     }
   },
   "icons": {
-    "16": "images/autodraw 4_12_2020.png",
-    "32": "images/autodraw 4_12_2020.png",
-    "48": "images/autodraw 4_12_2020.png",
-    "128": "images/autodraw 4_12_2020.png"
+    "16": "images/output-onlinepngtools.png",
+    "32": "images/output-onlinepngtools.png",
+    "48": "images/output-onlinepngtools.png",
+    "128": "images/output-onlinepngtools.png"
   },
   "manifest_version": 2
 }
