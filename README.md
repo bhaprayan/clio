@@ -1,1 +1,3 @@
-# Virtual Librarian
+# Clio - A Virtual Librarian
+
+WIP :)
