@@ -109,8 +109,8 @@ function logRequest(response, responseType) {
   doc_topic = doc
     .topics()
     .out("clean")
-    .replace(/[^\w\s]/gi, "") // remove special chars
     .replace(/(\r\n|\n|\r)/gm, "") // remove newlines
+    .replace(/[^\w\s]/gi, "") // remove special chars
     .split(/[ ]+/) // remove whitespaces
     .filter(Boolean) // filter nulls
     .filter(onlyUnique); // extract unique
