@@ -4,7 +4,7 @@
 
 > If I finish a book a week, I will read only a few thousand books in my lifetime, about a tenth of a percent of the contents of the greatest libraries of our time. The trick is to know which books to read.        —Carl Sagan
 
-clio is a browser plugin that will process search history and recommend books based on articles that you’ve read.
+clio is a browser plugin that processes search history and makes personalized book recommendations based on what you've been reading.
 
 ## Build
 
